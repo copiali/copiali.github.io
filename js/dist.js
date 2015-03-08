@@ -44023,7 +44023,8 @@ angular.module('app')
       function ($rootScope,   $state,   $stateParams) {
           $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
-            $rootScope.loadingDone = false;
+			//bug temp fix loading bug
+            //$rootScope.loadingDone = true;
       }
     ]
   )
@@ -44061,6 +44062,8 @@ angular.module('app')
 //          $translate.use($scope.currentlangKey);
         //        };
         $scope.projects = [];
+        //bug temp fix loading bug
+        $scope.loadingDone = true;
         projectService.getProjects().$promise.then(function(result) {
             $scope.projects = result.projects;
         });
@@ -44333,9 +44336,9 @@ angular.module('app')
             restrict: 'AC',
             link: function (scope, el, attr) {
                 el.bind('wallpaper.loaded', function() {
-                    scope.$apply(function() {
-                        $rootScope.loadingDone = true;
-                    });
+//                    scope.$apply(function() {
+//                        $rootScope.loadingDone = true;
+//                    });
                    
                 });
                 uiLoad.load(JQ_CONFIG['wallpaper']).then(function () {
